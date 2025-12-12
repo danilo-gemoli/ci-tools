@@ -11,9 +11,10 @@ import (
 func LeasesForTest(s *MultiStageTestConfigurationLiteral) (ret []StepLease) {
 	if p := s.ClusterProfile; p != "" {
 		ret = append(ret, StepLease{
-			ResourceType: p.LeaseType(),
-			Env:          DefaultLeaseEnv,
-			Count:        1,
+			ResourceType:       p.LeaseType(),
+			Env:                DefaultLeaseEnv,
+			Count:              1,
+			FromClusterProfile: true,
 		})
 	}
 	for _, step := range append(s.Pre, append(s.Test, s.Post...)...) {

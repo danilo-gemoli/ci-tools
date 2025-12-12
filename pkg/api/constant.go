@@ -61,9 +61,12 @@ const (
 	// `podStartTimeout`.
 	ReasonPending = "pod_pending"
 	// CliEnv if the env we use to expose the path to the cli
-	CliEnv                = "CLI_DIR"
-	DefaultLeaseEnv       = "LEASED_RESOURCE"
-	DefaultIPPoolLeaseEnv = "IP_POOL_AVAILABLE"
+	CliEnv                        = "CLI_DIR"
+	DefaultLeaseEnv               = "LEASED_RESOURCE"
+	DefaultIPPoolLeaseEnv         = "IP_POOL_AVAILABLE"
+	BoskosOwnerEnv                = "BOSKOS_OWNER"
+	BoskosURLEnv                  = "BOSKOS_URL"
+	ClusterProfileResourceTypeEnv = "CLUSTER_PROFILE_RESOURCE_TYPE"
 	// SkipCensoringLabel is the label we use to mark a secret as not needing to be censored
 	SkipCensoringLabel = "ci.openshift.io/skip-censoring"
 

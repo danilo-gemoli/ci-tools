@@ -69,10 +69,35 @@ func (s *leaseStep) Creates() []api.StepLink             { return s.wrapped.Crea
 func (s *leaseStep) Objects() []ctrlruntimeclient.Object { return s.wrapped.Objects() }
 
 func (s *leaseStep) Provides() api.ParameterMap {
+	clusterProfileResourceType := func() string {
+		for i := range s.leases {
+			l := &s.leases[i]
+			if l.FromClusterProfile {
+				return l.ResourceType
+			}
+		}
+		return ""
+	}
+
 	parameters := s.wrapped.Provides()
 	if parameters == nil {
 		parameters = api.ParameterMap{}
 	}
+
+	if cpResourceType := clusterProfileResourceType(); cpResourceType != "" {
+		parameters[api.ClusterProfileResourceTypeEnv] = func() (string, error) {
+			return cpResourceType, nil
+		}
+	}
+
+	parameters[api.BoskosURLEnv] = func() (string, error) {
+		return (*s.client).URL(), nil
+	}
+
+	parameters[api.BoskosOwnerEnv] = func() (string, error) {
+		return (*s.client).Owner(), nil
+	}
+
 	for i := range s.leases {
 		l := &s.leases[i]
 		parameters[l.Env] = func() (string, error) {

@@ -57,6 +57,10 @@ type Client interface {
 	// Metrics queries the states of a particular resource, for informational
 	// purposes.
 	Metrics(rtype string) (Metrics, error)
+	// URL is the boskos' url.
+	URL() string
+	// Owner is the actor's name that deals with leases.
+	Owner() string
 }
 
 // NewClient creates a client that leases resources with the specified owner.
@@ -64,17 +68,20 @@ func NewClient(owner, url, username string, passwordGetter func() []byte, retrie
 	randId = func() string {
 		return strconv.Itoa(rand.Int())
 	}
-	c, err := boskos.NewClientWithPasswordGetter(owner, url, username, passwordGetter)
+	upstreamC, err := boskos.NewClientWithPasswordGetter(owner, url, username, passwordGetter)
 	if err != nil {
 		return nil, err
 	}
-	return newClient(c, retries, acquireTimeout), nil
+	c := newClient(upstreamC, retries, acquireTimeout)
+	c.url = url
+	c.owner = owner
+	return c, nil
 }
 
 // for test mocking
 var randId func() string
 
-func newClient(boskos boskosClient, retries int, acquireTimeout time.Duration) Client {
+func newClient(boskos boskosClient, retries int, acquireTimeout time.Duration) *client {
 	return &client{
 		boskos:         boskos,
 		retries:        retries,
@@ -89,6 +96,8 @@ type client struct {
 	retries        int
 	acquireTimeout time.Duration
 	leases         map[string]*lease
+	url            string
+	owner          string
 }
 
 type lease struct {
@@ -191,4 +200,12 @@ func (c *client) Metrics(rtype string) (Metrics, error) {
 		Free:   metrics.Current[freeState],
 		Leased: metrics.Current[leasedState],
 	}, nil
+}
+
+func (c *client) URL() string {
+	return c.url
+}
+
+func (c *client) Owner() string {
+	return c.owner
 }

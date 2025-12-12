@@ -392,6 +392,16 @@ func (s *multiStageTestStep) environment() ([]coreapi.EnvVar, error) {
 		ret = append(ret, coreapi.EnvVar{Name: l.Env, Value: val})
 	}
 
+	for _, envName := range []string{api.ClusterProfileResourceTypeEnv, api.BoskosURLEnv, api.BoskosOwnerEnv} {
+		val, err := s.params.Get(envName)
+		if err != nil {
+			return nil, err
+		}
+		if val != "" {
+			ret = append(ret, coreapi.EnvVar{Name: envName, Value: val})
+		}
+	}
+
 	for _, name := range []string{api.InitialReleaseName, api.LatestReleaseName} {
 		envVar := fmt.Sprintf("ORIGINAL_%s", utils.ReleaseImageEnv(name))
 		pullspec, err := s.params.Get(envVar)
