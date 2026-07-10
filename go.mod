@@ -139,7 +139,7 @@ require (
 	golang.org/x/crypto v0.50.0 // indirect
 	golang.org/x/lint v0.0.0-20241112194109-818c5a804067 // indirect
 	golang.org/x/mod v0.35.0 // indirect
-	golang.org/x/sys v0.43.0 // indirect
+	golang.org/x/sys v0.43.0
 	golang.org/x/term v0.42.0 // indirect
 	golang.org/x/time v0.12.0
 	golang.org/x/tools v0.44.0
@@ -151,7 +151,7 @@ require (
 	gopkg.in/inf.v0 v0.9.1 // indirect
 	gopkg.in/ini.v1 v1.67.0
 	gopkg.in/yaml.v3 v3.0.1
-	k8s.io/apiextensions-apiserver v0.33.11 // indirect
+	k8s.io/apiextensions-apiserver v0.33.11
 	k8s.io/kube-openapi v0.0.0-20250318190949-c8a335a9a2ff // indirect
 	k8s.io/kubernetes v1.29.2 // indirect
 	knative.dev/pkg v0.0.0-20250415155312-ed3e2158b883 // indirect

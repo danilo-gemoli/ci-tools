@@ -1,0 +1,88 @@
+{
+  "type": "presubmit",
+  "job": "pull-ci-org-repo-branch-cluster-provisioning",
+  "buildid": "1913225428173066240",
+  "prowjobid": "d0592d3e-130e-48d6-a40a-24b8dc82525e",
+  "refs": {
+    "org": "",
+    "repo": "",
+    "base_sha": "fake",
+    "base_link": "/commit/fake",
+    "pulls": [
+      {
+        "number": 0,
+        "author": "",
+        "sha": "",
+        "commit_link": "/pull/0/commits/"
+      }
+    ]
+  },
+  "decoration_config": {
+    "timeout": "4h0m0s",
+    "grace_period": "1h0m0s",
+    "utility_images": {
+      "clonerefs": "us-docker.pkg.dev/k8s-infra-prow/images/clonerefs:v20250412-53ab931a4",
+      "initupload": "us-docker.pkg.dev/k8s-infra-prow/images/initupload:v20250412-53ab931a4",
+      "entrypoint": "us-docker.pkg.dev/k8s-infra-prow/images/entrypoint:v20250412-53ab931a4",
+      "sidecar": "us-docker.pkg.dev/k8s-infra-prow/images/sidecar:v20250412-53ab931a4"
+    },
+    "resources": {
+      "clonerefs": {
+        "limits": {
+          "memory": "3Gi"
+        },
+        "requests": {
+          "cpu": "100m",
+          "memory": "500Mi"
+        }
+      },
+      "initupload": {
+        "limits": {
+          "memory": "200Mi"
+        },
+        "requests": {
+          "cpu": "100m",
+          "memory": "50Mi"
+        }
+      },
+      "place_entrypoint": {
+        "limits": {
+          "memory": "100Mi"
+        },
+        "requests": {
+          "cpu": "100m",
+          "memory": "25Mi"
+        }
+      },
+      "sidecar": {
+        "limits": {
+          "memory": "2Gi"
+        },
+        "requests": {
+          "cpu": "100m",
+          "memory": "250Mi"
+        }
+      }
+    },
+    "gcs_configuration": {
+      "bucket": "test-platform-results",
+      "path_strategy": "single",
+      "default_org": "openshift",
+      "default_repo": "origin",
+      "mediaTypes": {
+        "log": "text/plain"
+      },
+      "compress_file_types": [
+        "txt",
+        "log",
+        "json",
+        "tar",
+        "html",
+        "yaml"
+      ]
+    },
+    "gcs_credentials_secret": "gce-sa-credentials-gcs-publisher",
+    "skip_cloning": true,
+    "censor_secrets": true
+  }
+}

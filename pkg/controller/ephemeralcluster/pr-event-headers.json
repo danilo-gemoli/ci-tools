@@ -1,0 +1,19 @@
+{
+  "Accept": "*/*",
+  "Accept-Encoding": "gzip",
+  "Content-Length": "27562",
+  "Content-Type": "application/json",
+  "Forwarded": "for=140.82.115.11;host=sprayproxy-route-sprayproxy.apps.stone-stg-host.qc0p.p1.openshiftapps.com;proto=https",
+  "User-Agent": "GitHub-Hookshot/6e7c1de",
+  "X-Forwarded-For": "140.82.115.11, 10.128.14.10",
+  "X-Forwarded-Host": "sprayproxy-route-sprayproxy.apps.stone-stg-host.qc0p.p1.openshiftapps.com",
+  "X-Forwarded-Port": "443",
+  "X-Forwarded-Proto": "https",
+  "X-Github-Delivery": "aa9ede40-8fbb-11f0-8717-9eed0c1315d0",
+  "X-Github-Event": "pull_request",
+  "X-Github-Hook-Id": "400216108",
+  "X-Github-Hook-Installation-Target-Id": "291232",
+  "X-Github-Hook-Installation-Target-Type": "integration",
+  "X-Hub-Signature": "sha1=8bd00dfad823733f2d400cd3f1dce491570112b3",
+  "X-Hub-Signature-256": "sha256=0e814f60700e5114c92115e262b28d8b7f4f30913321bd26bbee63dc95e2f780"
+}
